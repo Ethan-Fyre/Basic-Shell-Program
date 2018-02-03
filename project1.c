@@ -59,7 +59,7 @@ int main(void)
     
     //Shell prompt 
     printf("Ethan's Shell: ");
-    /* while (c != '\n')
+     while (c != '\n')
     {
         c = getc(stdin);
         if (c != ' ')
@@ -77,12 +77,12 @@ int main(void)
             }
         }
     } 
-    input_args[spot] = NULL; */
+    input_args[spot] = NULL; 
     
     //Test the shell for capability to run commands
-    input_args[0] = "ls\0";
+    /* input_args[0] = "ls\0";
     input_args[1] = "-al\0";
-    input_args[2] = NULL;
+    input_args[2] = NULL; */
 
     //Make a child and have that child perform a test run
     pid = fork();
