@@ -54,36 +54,38 @@ int main(void)
         {
             exit(0);
         }
-        input_args[i] = "";
+        strcpy(input_args[i], "");
     }    
     
     //Shell prompt 
     printf("Ethan's Shell: ");
-    /* while (c != '\n')
+    c = getc(stdin);
+    while (c != '\n')
     {
-        c = getc(stdin);
         if (c != ' ')
         {
             input_args[spot][spot2] = c;
             input_args[spot][spot2+1] = '\0';
             spot2 += 1;
+            evenodd = 0;
         }
-        if (evenodd % 2 == 0)
+        if (c == ' ')
         {
-            if (c == ' ')
+            if (evenodd == 0)
             {   
-                evenodd += 1;
+                evenodd = 1;
+                spot2 = 0;
                 spot += 1;
             }
         }
+        c = getc(stdin);
     } 
-    input_args[spot] = NULL; */
-    
-    //Test the shell for capability to run commands
-    input_args[0] = "ls\0";
-    input_args[1] = "-al\0";
-    input_args[2] = NULL;
-
+    if (evenodd == 1)
+    {
+        input_args[spot] = NULL;
+    } else {
+        input_args[spot+1] = NULL;
+    }
     //Make a child and have that child perform a test run
     pid = fork();
     if (pid == 0)
